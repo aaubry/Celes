@@ -98,7 +98,7 @@
         $(document).on("click", "form button[type=submit]", function (evt) {
             evt.preventDefault();
 
-            var button = $(evt.target);
+            var button = $(evt.target).closest("button");
             var form = button.closest("form");
 
             form.find("textarea.mceEditor").each(function() {
