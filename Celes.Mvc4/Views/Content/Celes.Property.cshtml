@@ -1,0 +1,74 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.PropertyModel>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+
+<div class="edit-field">
+    <label for="Content_@(Model.Metadata.PropertyName)">@Model.Metadata.GetDisplayName()</label>
+    <span class="description">@Model.Metadata.Description</span>
+    <div class="value">
+        @if (Model.IsContentCollection)
+        {
+            var id = Guid.NewGuid();
+            <select id="@id">
+                <option class="new" value="-" selected="selected">@Celes.Mvc4.Resources.New</option>
+                @foreach (var elementType in Model.CollectionElementTypes)
+                {
+                    <option value="@elementType.FullName">@elementType.DisplayName</option>
+                }
+            </select>
+                
+            <script type="text/javascript">
+                $(function () {
+                    var menu = $("#@id");
+                    menu
+                        .selectmenu({
+                            style: "dropdown",
+                            width: 200,
+                            icons: [
+					            { find: ".new", icon: "ui-icon-plus" }
+                            ]
+                        })
+                        .change(function (evt) {
+                            var elementType = menu.val();
+                            var elementName = menu
+                                .find("option")
+                                .filter(function() { return this.value == elementType; })
+                                .text();
+
+                            menu.selectmenu("value", "-");
+
+                            var dlg = $("<div class='form-container'></div>");
+                            $(document.body).append(dlg);
+                            dlg.loadUrl(
+                                @(Html.JsString(Url.Action("Create", "Content", new {
+                                    path = Model.ContentPath.ToString(),
+                                    container = Model.Property.Name,
+                                    type = "_elementType_"
+                                }))).replace("_elementType_", elementType),
+                                function () {
+                                    dlg.dialog({
+                                        modal: true,
+                                        width: 850,
+                                        title: @(Html.JsString(string.Format(Resources.CreateNewContent, "_elementType_")))
+                                            .replace("_elementType_", elementName),
+                                        closeText: @Html.JsString(Resources.Close)
+                                    });
+                                    this.initializeEditors();
+                                }
+                            );
+                        })
+                    ;
+                });
+            </script>
+        }
+        else
+        {
+            <text>
+                @Model.Editor
+                @Model.ValidationMessages
+            </text>
+        }
+    </div>
+</div>

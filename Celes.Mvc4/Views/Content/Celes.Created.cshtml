@@ -1,0 +1,35 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Common.ContentPath>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+    var id = Guid.NewGuid().ToString();
+}
+
+<div id="@id"></div>
+<script type="text/javascript">
+    var parentNode = $("#navigation li[path='@Model.GetParent()']");
+
+    var tree = $.jstree._reference("#navigation > .content");
+
+    if (!tree.is_closed(parentNode)) {
+        tree.create_node(parentNode, "last", {
+            data: { title: "@Model.Last()" },
+            attr: { path: "@Model" }
+        });
+    }
+
+    tree.open_node(parentNode, function () {
+        tree.deselect_all();
+
+        var newNode = $("#navigation li[path='@Model']");
+        tree.select_node(newNode);
+
+        $("#@id").closest(".form-container")
+            .dialog("close")
+            .dialog("destroy")
+            .remove();
+    });
+</script>

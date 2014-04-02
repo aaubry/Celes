@@ -1,0 +1,17 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Tuple<Celes.Mvc4.Models.FileManagerTreeNode, System.Collections.Generic.IEnumerable<Celes.Mvc4.Models.FileManagerPathSegment>>>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.IO
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+	var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+}
+
+@Html.Raw(serializer.Serialize(new
+{
+	tree = Html.Partial("Celes.ShowTree", Model.Item1).ToString(),
+	addr = Html.Partial("Celes.ShowPath", Model.Item2).ToString(),
+	error = "",
+}))

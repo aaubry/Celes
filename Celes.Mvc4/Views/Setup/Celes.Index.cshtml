@@ -1,0 +1,48 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.CreateUserModel>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = @"..\Shared\Celes.Layout.cshtml";
+}
+
+@section Includes{
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/jquery-1.8.0.min.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/jquery-ui-1.8.23.custom.min.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/celes.js" })"></script>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/smoothness/jquery-ui-1.8.23.custom.min.css" })" />
+    <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/editor.css" })" />
+
+    <style type="text/css">
+        .ui-dialog-titlebar-close {
+            display: none;
+        }
+    </style>
+}
+
+<div id="login-dialog" title="@Resources.CreateUser">
+    @using (Html.BeginForm("CreateUser", "Setup"))
+    {
+        @Html.AntiForgeryToken();
+        @Html.EditorForModel();
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#login-dialog").dialog({
+            modal: false,
+            draggable: false,
+            buttons: {
+                @Html.JsString(Resources.CreateUser): function() {
+                    $("#login-dialog form").submit();
+                }
+            },
+            beforeClose: function(evt, ui) {
+                evt.preventDefault();
+            }
+        });
+    });
+</script>

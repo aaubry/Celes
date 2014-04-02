@@ -1,0 +1,22 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.MenuModel>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+
+@helper RenderMenuItems(IEnumerable<Celes.Mvc4.Models.MenuItemModel> menuItems, IDictionary<string, object> htmlAttributes)
+{
+    if(menuItems != null) {
+        <ul @Html.Raw(htmlAttributes != null ? string.Join(" ", Model.HtmlAttributes.Select(a => string.Format("{0}=\"{1}\"", Html.Encode(a.Key), Html.Encode(a.Value)))) : "")>
+            @foreach (var menuItem in menuItems)
+	        {
+		        <li>
+                    @Html.Partial(menuItem.ViewName, menuItem.Content)
+                    @RenderMenuItems(menuItem.ChildMenuItems, null)
+		        </li>
+	        }
+        </ul>
+    }
+}
+
+@RenderMenuItems(Model.MenuItems, Model.HtmlAttributes)

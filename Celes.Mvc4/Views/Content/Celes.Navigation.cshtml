@@ -1,0 +1,26 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.NavigationModel>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+}
+
+<ul class="navigation-top">
+    @foreach (var path in Model.CurrentPath.GetSegments())
+    {
+        <li>
+            @Html.ActionLink(path.Any() ? path.Last() : "$", "Edit", new { path = path.ToString() })
+        </li>
+    }
+</ul>
+
+<ul class="navigation-left">
+    @foreach (var node in Model.Siblings)
+    {
+        <li @(node.Path == Model.CurrentPath ? "current" : "")>
+            @Html.ActionLink(node.Path.Any() ? node.Path.Last() : "$", "Edit", new { path = node.Path.ToString() })
+        </li>
+    }
+</ul>

@@ -1,0 +1,25 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.FileManagerTreeNode>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+}
+
+@helper RenderTree(Celes.Mvc4.Models.FileManagerTreeNode node)
+{
+	<div class="folderOpenSection" style="display: block;">
+		<div class="folderS " path="@node.Path" title="Файлов: 36, папок: 3" pathtype="images">@node.Name</div>
+		@foreach(var child in node.Children)
+		{
+			@RenderTree(child)
+		}
+	</div>	
+}
+
+<div class="folderImages folderAct" path="" pathtype="images">@Model.Name</div>
+@foreach(var child in Model.Children)
+{
+	@RenderTree(child)
+}

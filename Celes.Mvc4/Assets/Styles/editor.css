@@ -1,0 +1,122 @@
+﻿
+body {
+	font-size: 12px;
+}
+
+#navigation, #content {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: 10px;
+}
+
+#content {
+	left: 260px;
+	right: 0;
+	overflow: auto;
+}
+
+#navigation {
+	left: 0;
+	width: 250px;
+}
+
+#navigation .ui-widget-header {
+	margin: 3px;
+	padding: 3px 3px 6px;
+	position: absolute;
+	width: 236px;
+}
+
+#navigation .content {
+	bottom: 3px;
+	left: 3px;
+	overflow: auto;
+	position: absolute;
+	right: 3px;
+	top: 35px;
+}
+
+.logout {
+	position: fixed;
+	right: 14px;
+	top: 13px;
+	z-index: 100;
+}
+
+.edit-field {
+	clear: both;
+	margin: 10px 0;
+	font-size: 12px;
+}
+
+.edit-field label {
+	float: left;
+	width: 140px;
+	padding: 2px 0 0;
+}
+
+.edit-field .description {
+	float: left;
+	clear: left;
+	width: 140px;
+	font-size: 10px;
+	font-style: italic;
+}
+
+.edit-field .value {
+	margin-left: 150px;
+}
+
+.edit-field .validation {
+}
+
+.edit-field .mceEditor {
+	width: 500px;
+	height: 200px;
+}
+
+.edit-field input {
+	width: 300px;
+}
+
+.edit-field .field-validation-error {
+	background-color: #FF9999;
+	padding: 2px 4px;
+	margin: 0 4px;
+}
+
+.toolbar {
+	margin-bottom: 3px;
+	padding: 3px;
+}
+
+.message {
+	display: inline;
+	padding: 7px;
+	margin-left: 20px;
+}
+
+.message .ui-icon {
+	display: inline-block;
+	position: relative;
+	top: 3px;
+}
+
+table form {
+	display: inline;
+}
+
+input[type=text] {
+	border: 1px solid #CCCCCC;
+}
+
+.loading {
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-width: 320px;
+	min-height: 200px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}

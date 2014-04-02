@@ -1,0 +1,36 @@
+﻿@using StackExchange.Profiling;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    @RenderSection("Includes", required: false)
+
+    <style type="text/css">
+        .profiler-results {
+            display: none;
+        }
+
+        #showProfiler {
+            position: fixed;
+            top: 3px;
+            left: 85px;
+        }
+    </style>
+</head>
+<body>
+    <a id="showProfiler" href="#">Profiler</a>
+
+    @RenderBody()
+    @MiniProfiler.RenderIncludes()
+
+    <script type="text/javascript">
+        $("#showProfiler").click(function (evt) {
+            evt.preventDefault();
+
+            $(".profiler-results").toggle();
+        });
+    </script>
+</body>
+</html>

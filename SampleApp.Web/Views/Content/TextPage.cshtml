@@ -1,0 +1,21 @@
+﻿@model Celes.Mvc4.Models.IContentInfo<SampleApp.DataModel.TextPage>
+@using Celes.Mvc4.Helpers
+
+@{
+    ViewBag.Title = "TextPage";
+}
+
+<ul>
+    @foreach (var segment in Model.Path.GetSegments())
+    {
+        <li>
+            <a href="/@segment">@(segment.LastOrDefault() ?? "home")</a>
+        </li>
+    }
+</ul>
+
+<h2>TextPage</h2>
+
+@Html.Raw(Model.Content.Text)
+
+@Html.Menu(1, depth: 0)

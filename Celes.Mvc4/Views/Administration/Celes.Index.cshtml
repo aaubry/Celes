@@ -1,0 +1,118 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Common.IContentPathCacheEntry>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = @"..\Shared\Celes.Layout.cshtml";
+}
+
+@section Includes{
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/tiny_mce/tiny_mce.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/jquery-1.8.0.min.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/jquery-ui-1.8.23.custom.min.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/ui.selectmenu.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jstree/jquery.jstree.min.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/celes.js" })"></script>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/ui.selectmenu.css" })" />
+    <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/smoothness/jquery-ui-1.8.23.custom.min.css" })" />
+    <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/editor.css" })" />
+
+    <style type="text/css">
+        .loading {
+            background-image: url(@Url.Action("Get", "Asset", new { path = "Scripts/jstree/themes/default/throbber.gif" }));
+        }
+    </style>
+}
+
+<div id="navigation" class="ui-widget-content ui-widget ui-corner-all">
+    <h2 class="ui-widget-header ui-helper-reset ui-corner-all">@Resources.Navigation
+    </h2>
+    <div class="content"></div>
+</div>
+<a href='@Url.RouteUrl("Celes.Default", new { action = "Logout", controller = "Authentication", returnUrl = Url.Action("Index", "Administration") })' class="logout">@Resources.SignOut</a>
+<div id="content" class="form-container"></div>
+
+<script type="text/javascript">
+    $(function () {
+        tinyMCE.init({
+            mode: "none",
+            theme: "advanced",
+            language: @Html.JsString(Resources.TinyMCELanguage),
+            theme_advanced_path: false,
+            theme_advanced_statusbar_location: "none",
+            theme_advanced_buttons1: "bold,italic,underline,|,undo,redo,|,bullist,numlist,|,link,unlink,image,images,|,formatselect,justifyleft,justifycenter,justifyright,justifyfull,|,code",
+            theme_advanced_buttons2: "",
+            theme_advanced_buttons3: "",
+            theme_advanced_blockformats: "p,h3,h4",
+            //plugins : "advimage"
+            plugins: "images"
+        });
+
+        $(".logout").button({ icons: { primary: "ui-icon-arrowreturn-1-e" } });
+
+        $("#navigation > .content")
+            .jstree({
+                core: {
+                    strings: {
+                        loading: @Html.JsString(Resources.Loading)
+                    }
+                },
+                json_data: {
+                    data: [
+                        {
+                            data: @Html.JsString(Resources.RootContentName),
+                            attr: {
+                                path: ""
+                            },
+                            state: @Html.JsString(Model != null && Model.HasChildren ? "closed" : null),
+                        }
+                    ],
+                    ajax: {
+                        url: function (data) {
+                            return @Html.JsString(Url.Action("Children", "Navigation")) + "/" + $(data).attr("path");
+                        }
+                    }
+                },
+                ui: {
+                    select_limit: 1
+                },
+                plugins: [ "themes", "json_data", "ui" ]
+            })
+            .bind("select_node.jstree", function (e, data) {
+                
+                var path = $(data.rslt.obj).attr("path");
+                $("#content")
+                    .disposeEditors()
+                    .loadUrl(@Html.JsString(Url.Action("Edit", "Content")) + "/" + path, function () {
+                        this.initializeEditors();
+                    });
+            })
+            .bind("loaded.jstree", function(e, data) {
+                $.jstree._reference("#navigation > .content")
+                    .select_node($("#navigation li[path='']"));
+            })
+        ;
+
+        $(document).on("click", "form button[type=submit]", function (evt) {
+            evt.preventDefault();
+
+            var button = $(evt.target);
+            var form = button.closest("form");
+
+            form.find("textarea.mceEditor").each(function() {
+                tinyMCE.get(this.id).save();
+            });
+
+            var data = form.serialize() + "&" + button.attr("name") + "=1";
+            form.find("input").attr("disabled", "disabled");
+
+            form.closest(".form-container")
+                .disposeEditors()
+                .loadUrl(form.attr("action"), data, function () {
+                    this.initializeEditors();
+                });
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+﻿@model Celes.Mvc4.Models.IContentInfo<SampleApp.DataModel.HomePage>
+@using Celes.Mvc4.Helpers
+
+@{
+    ViewBag.Title = "HomePage";
+}
+
+<h2>HomePage</h2>
+
+@Html.Raw(Model.Content.Text)
+
+@Html.Menu(1, depth: 3)

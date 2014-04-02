@@ -1,0 +1,30 @@
+﻿@inherits System.Web.Mvc.WebViewPage<System.Collections.Generic.IEnumerable<Celes.Mvc4.Models.FileManagerDirectoryEntry>>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.IO
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+}
+
+@foreach(var file in Model)
+{
+	<table class="imageBlock0" cellpadding="0" cellspacing="0" filename="@file.Name"
+		fname="@file.BaseName" type="images"
+		ext="@file.Extension.ToUpper()" path="@file.Path"
+		linkto="@file.Url" fsize="@file.Size" fsizetext="54,28kb"
+		date="@file.Date" fwidth="@file.Width" fheight="@file.Height" md5="">
+		
+		<tr>
+			<td valign="bottom" align="center">
+				<div class="imageBlock1">
+					<div class="imageImage">
+						<img src="@file.Url" width="100" height="100" alt="@file.BaseName" />
+					</div>
+					<div class="imageName">@file.BaseName</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+}

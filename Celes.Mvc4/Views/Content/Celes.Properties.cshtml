@@ -1,0 +1,32 @@
+﻿@inherits System.Web.Mvc.WebViewPage<System.Collections.Generic.IEnumerable<Celes.Mvc4.Models.PropertyModel>>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+
+@{
+    var id = Guid.NewGuid().ToString();
+    
+    var groups = Model
+        .Where(m => !m.IsContentCollection || m.ContentPath != null)
+        .GroupBy(m => m.GroupName).OrderBy(g => g.Min(p => p.Metadata.Order));
+}
+
+<div id="@id">
+    @foreach (var group in groups)
+    {
+        <h3><a href="#">@(string.IsNullOrEmpty(group.Key) ? Celes.Mvc4.Resources.DefaultGroupName : group.Key)</a></h3>
+        <div>
+            @foreach (var property in group.OrderBy(p => p.Metadata.Order))
+	        {
+                @:@Html.Partial("Celes.Property", property)
+	        }
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $("#@id").accordion({ fillSpace: true });
+
+    $(window).resize(function () {
+        // update accordion height
+        $("#@id").accordion("resize")
+    });
+</script>

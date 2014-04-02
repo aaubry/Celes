@@ -1,0 +1,6 @@
+﻿@inherits System.Web.Mvc.WebViewPage<string>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+
+@Html.TextAreaFor(m => m, new { @class = "mceEditor", id = Guid.NewGuid().ToString() })

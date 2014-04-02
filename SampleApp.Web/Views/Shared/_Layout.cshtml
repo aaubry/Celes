@@ -1,0 +1,24 @@
+﻿@using StackExchange.Profiling;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div id="title">
+                <h1>@ViewBag.Title</h1>
+                @Html.ActionLink("edit", "Edit", "Content", new { path = Request.Url.LocalPath }, null)
+            </div>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
+    </div>
+    @MiniProfiler.RenderIncludes()
+</body>
+</html>

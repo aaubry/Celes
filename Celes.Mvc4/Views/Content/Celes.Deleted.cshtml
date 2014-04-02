@@ -1,0 +1,13 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.IContentInfo>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    var deletedNode = $("#navigation li[path='@Model.Path']");
+    $("#navigation > .content").jstree("delete_node", deletedNode);
+</script>

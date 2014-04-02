@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C957139-50AB-4B4A-B005-C08C95840003}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Celes.Mvc4</RootNamespace>
+    <AssemblyName>Celes.Mvc4</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\FormsAuthenticationController.cs" />
+    <Compile Include="Controllers\AssetController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\ContentControllerBase.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="CsRazorViewEngine.cs" />
+    <Compile Include="Helpers\ControllerExtensions.cs" />
+    <Compile Include="Helpers\FormHelper.cs" />
+    <Compile Include="Helpers\JavascriptHelper.cs" />
+    <Compile Include="Helpers\LinkHelper.cs" />
+    <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Helpers\TypeConverterModelBinder.cs" />
+    <Compile Include="Models\ContentInfo.cs" />
+    <Compile Include="Models\CreateUserModel.cs" />
+    <Compile Include="Models\FileManagerModels.cs" />
+    <Compile Include="Models\IContentInfo.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\NavigationModel.cs" />
+    <Compile Include="Models\PropertyModel.cs" />
+    <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="MultiButtonAttribute.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceVirtualPathProvider.cs" />
+    <Compile Include="RouteConfig.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthorizeAdministrationAttribute.cs" />
+    <Compile Include="Services\DefaultAuthorizationProvider.cs" />
+    <Compile Include="Services\IAuthorizationProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.fr.resx" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Administration\Celes.Index.cshtml" />
+    <EmbeddedResource Include="Views\Authentication\Celes.Login.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.ContentDefault.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Created.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Deleted.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Edit.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Navigation.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Properties.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Property.cshtml" />
+    <EmbeddedResource Include="Views\Menu\Celes.Menu.cshtml" />
+    <EmbeddedResource Include="Views\Setup\Celes.Index.cshtml" />
+    <EmbeddedResource Include="Views\Shared\Celes.Layout.cshtml" />
+    <EmbeddedResource Include="Views\Shared\DisplayTemplates\RichText.cshtml" />
+    <EmbeddedResource Include="Views\Shared\EditorTemplates\RichText.cshtml" />
+    <None Include="Celes.Mvc4.nuspec" />
+    <EmbeddedResource Include="Views\FileManager\Celes.ShowPath.cshtml" />
+    <EmbeddedResource Include="Views\FileManager\Celes.ShowTree.cshtml" />
+    <EmbeddedResource Include="Views\FileManager\Celes.ShowDir.cshtml" />
+    <EmbeddedResource Include="Views\FileManager\Celes.CreateDir.cshtml" />
+    <None Include="Web.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Celes.Common\Celes.Common.csproj">
+      <Project>{937675a5-762a-4032-9db0-6ceb71c06b81}</Project>
+      <Name>Celes.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Styles\editor.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\langs\en.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\editor_template.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\editor_template_src.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\img\icons.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\langs\en.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\skins\default\content.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\skins\default\ui.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\tiny_mce.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\tiny_mce_popup.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\utils\editable_selects.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\utils\form_utils.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\utils\mctabs.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\utils\validate.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\jstree\jquery.jstree.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\jquery\jquery-1.8.0.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\jstree\themes\default\d.gif" />
+    <EmbeddedResource Include="Assets\Scripts\jstree\themes\default\d.png" />
+    <EmbeddedResource Include="Assets\Scripts\jstree\themes\default\style.css" />
+    <EmbeddedResource Include="Assets\Scripts\jstree\themes\default\throbber.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-icons_222222_256x240.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-icons_454545_256x240.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-icons_888888_256x240.png" />
+    <EmbeddedResource Include="Assets\Styles\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="Assets\Styles\smoothness\jquery-ui-1.8.23.custom.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\jquery\jquery-ui-1.8.23.custom.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\jstree\jquery.jstree.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Styles\smoothness\jquery-ui-1.8.23.custom.min.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\celes.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\langs\fr.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\simple\langs\fr.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\jquery\ui.selectmenu.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Styles\ui.selectmenu.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\about.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\anchor.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\charmap.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\color_picker.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\editor_template.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\editor_template_src.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\image.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\colorpicker.jpg" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\flash.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\icons.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\iframe.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\pagebreak.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\quicktime.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\realmedia.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\shockwave.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\trans.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\video.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\img\windowsmedia.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\about.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\anchor.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\charmap.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\color_picker.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\image.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\link.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\js\source_editor.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\langs\en.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\langs\en_dlg.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\link.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\shortcuts.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\content.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\dialog.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\buttons.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\items.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\menu_arrow.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\menu_check.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\progress.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\img\tabs.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\skins\default\ui.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\source_editor.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\langs\fr.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\themes\advanced\langs\fr_dlg.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\css\images.css" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\editor_plugin.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\images.htm" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\addrBack.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\addrLeft.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\addrRight.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\ajax-loader-files.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\ajax-loader.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\arrowRight.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\backActive.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\backDisabled.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\backEnabled.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\cancelbutton.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\chain.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\chain_small.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\cross_circle_frame.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\cross_small.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\3gp.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\avi.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\bz.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\cpp.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\css.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\doc.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\docx.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\exe.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\flac.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\flv.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\gz.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\htm.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\html.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\jpg.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\js.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\m4v.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\mkv.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\mov.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\mp3.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\mp4.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\none.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\ogg.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\pdf.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\pl.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\pptx.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\ptt.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\py.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\rar.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\rb.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\rm.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\rtf.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\sh.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\swf.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\tar.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\txt.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\tz.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\vob.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\wav.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\wma.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\wmv.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\xhtml.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\xls.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\xlsx.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\xml.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\fileicons\zip.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folders.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_arrow.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_minus.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_open.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_open_document.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_open_image.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\folder_plus.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\footBackground.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\icon.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\images_minus.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\images_plus.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\pencil_small.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\tick_circle_frame.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\tick_small.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\toolBack.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\toolLeft.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\toolRight.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\uploadClose.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\img\uploadWindow.png" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\images.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\jquery-1.3.2.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\jquery-colors.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\jquery.form.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\jquery.MultiFile.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\fileprogress.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\handlers.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.cookies.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.queue.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.speed.js" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.swf" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\images\js\swfupload\swfupload.swfobject.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,104 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.IContentInfo>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@using Celes.Common
+@{
+    Layout = null;
+	var path = Model.Path != null ? Model.Path.ToString() : "";
+}
+
+<script type="text/javascript">
+
+    setTimeout(function () {
+        $(".message").fadeOut();
+    }, 10000);
+
+	$(".toolbar button[name=save]")
+		.button({ icons: { primary: "ui-icon-disk" } });
+
+	$(".toolbar button[name=moveUp]")
+		.button({ icons: { primary: "ui-icon-arrowthick-1-n" }, text: false })
+		.click(function(evt) {
+			evt.preventDefault();
+
+			$.post(
+				@Html.JsString(Url.Action("MoveUp", "Content", new { path })),
+				null,
+				function (responseText) {
+					if(responseText == "true") {
+						var movedNode = $("#navigation li[path='@Model.Path']");
+						$("#navigation > .content").jstree("move_node", movedNode, movedNode.prev(), "before");
+					}
+				}
+			);
+		});
+
+	$(".toolbar button[name=moveDown]")
+		.button({ icons: { primary: "ui-icon-arrowthick-1-s" }, text: false })
+		.click(function(evt) {
+			evt.preventDefault();
+
+			$.post(
+				@Html.JsString(Url.Action("MoveDown", "Content", new { path })),
+				null,
+				function (responseText) {
+					if(responseText == "true") {
+						var movedNode = $("#navigation li[path='@Model.Path']");
+						$("#navigation > .content").jstree("move_node", movedNode, movedNode.next(), "after");
+					}
+				}
+			);
+		});
+
+    $(".toolbar button[name=delete]")
+        .click(function (evt) {
+            if (!confirm("@Resources.ConfirmContentDeletion")) {
+                evt.preventDefault();
+                evt.stopPropagation();
+            }
+        })
+        .button({ icons: { primary: "ui-icon-trash" } });
+
+</script>
+
+@using (Html.BeginForm())
+{
+    @:@Html.AntiForgeryToken()
+
+    <div class="toolbar ui-widget ui-corner-all">
+        <button type="submit" name="save" value="save">@Resources.Save</button>
+        <button type="submit" name="delete" value="delete"@(Model.Path == null || Model.Path.IsRoot ? " disabled='disabled'" : "")>@Resources.Delete</button>
+
+        @if (Model.Path != null && Model.Path != ContentPath.Root)
+        {
+            <button name="moveDown" id="moveDown">@Resources.MoveDown</button>
+            <button name="moveUp" id="moveUp">@Resources.MoveUp</button>
+        }
+
+        @if (TempData["Celes.Message"] != null)
+        {
+            switch ((string)TempData["Celes.MessageType"])
+            {
+                case "error":
+                    <div class="message ui-state-error ui-corner-all">
+                        <span class="ui-icon ui-icon-alert"></span>
+                        @TempData["Celes.Message"]
+                    </div>
+                    break;
+
+                case "success":
+                case "warning":
+                default:
+                    <div class="message ui-state-highlight ui-corner-all">
+                        <span class="ui-icon ui-icon-info"></span>
+                        @TempData["Celes.Message"]
+                    </div>
+                    break;
+            }
+        }
+    </div>
+
+    @:@Html.RenderEditForm()
+}

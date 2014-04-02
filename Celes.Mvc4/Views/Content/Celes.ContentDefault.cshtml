@@ -1,0 +1,32 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Celes.Mvc4.Models.IContentInfo>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Celes.Mvc4.Helpers
+@using Celes.Mvc4
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@Model.Content.Alias</title>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div id="title">
+                <h1>@Model.Content.Alias</h1>
+            </div>
+        </header>
+        <section id="main">
+            <p class="warning">
+				This is the default template for contents of type '@Model.ContentType.Name'.
+			</p>
+			@Html.DisplayFor(m => m.Content)
+        </section>
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

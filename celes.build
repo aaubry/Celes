@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="Celes" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+
+	<!-- This build file requires .NET 4.0 and nant 0.92 or higher -->
+	<property name="nant.settings.currentframework" value="net-4.0"/>
+	<property name="packages" value=".packages" />
+
+	<loadtasks assembly=".support/NAnt.Contrib.Tasks.dll" />
+
+	<target name="*" description="Builds a Celes package">
+		<property name="project" value="Celes.${target::get-current-target()}" />
+
+		<fail message="Invalid target: '${target::get-current-target()}'" unless="${directory::exists(project)}" />
+		<call target="internal-package" />
+	</target>
+	
+	<target name="internal-package" depends="internal-build internal-ensure-package-dir">
+		<exec program=".nuget\NuGet.exe" commandline="pack ${project}.csproj -Prop Configuration=Release" workingdir="${project}" />
+		<move todir="${packages}" overwrite="true">
+			<fileset basedir="${project}">
+				<include name="*.nupkg" />
+			</fileset>
+		</move>
+	</target>
+
+	<target name="internal-ensure-package-dir">
+		<mkdir dir="${packages}" />
+	</target>
+
+	<target name="internal-build">
+		<msbuild project="Celes.sln" target="Build">
+			<property name="Configuration" value="Release" />
+		</msbuild>
+	</target>
+</project>
