@@ -80,6 +80,10 @@ body {
 	width: 300px;
 }
 
+.edit-field input[type=checkbox] {
+	width: auto;
+}
+
 .edit-field .field-validation-error {
 	background-color: #FF9999;
 	padding: 2px 4px;
