@@ -161,6 +161,7 @@
     <EmbeddedResource Include="Views\FileManager\Celes.ShowTree.cshtml" />
     <EmbeddedResource Include="Views\FileManager\Celes.ShowDir.cshtml" />
     <EmbeddedResource Include="Views\FileManager\Celes.CreateDir.cshtml" />
+    <EmbeddedResource Include="Views\Content\Celes.Pick.cshtml" />
     <None Include="Web.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -405,6 +406,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\fullscreen\editor_plugin.js" />
     <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\fullscreen\fullscreen.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\celes\editor_plugin.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\celes\img\link.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

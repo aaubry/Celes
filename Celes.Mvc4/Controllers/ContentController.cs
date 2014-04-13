@@ -71,6 +71,21 @@ namespace Celes.Mvc4.Controllers
 			}
 		}
 
+        [HttpGet]
+        public ActionResult Pick()
+        {
+            IContentPathCacheEntry model;
+            try
+            {
+                model = _contentPathCache.GetEntryByPath(ContentPath.Root);
+            }
+            catch (ContentNotFoundException)
+            {
+                model = null;
+            }
+            return View("Celes.Pick", model);
+        }
+
 		[HttpGet, AuthorizeAdministration]
 		public ActionResult Edit([ModelBinder(typeof(TypeConverterModelBinder))] ContentPath path)
 		{

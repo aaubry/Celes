@@ -35,7 +35,7 @@ namespace Celes.Mvc4
 				"Celes.Content",
 				"celes/content/{action}/{*path}",
 				new { controller = "Content" },
-				new { action = "Edit|Navigation|Create|MoveUp|MoveDown" },
+				new { action = "Edit|Navigation|Create|MoveUp|MoveDown|Pick" },
 				namespaces
 			);
 
