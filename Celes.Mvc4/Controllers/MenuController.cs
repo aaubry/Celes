@@ -16,7 +16,7 @@ namespace Celes.Mvc4.Controllers
 		}
 
 		[ChildActionOnly]
-		public ActionResult Menu([ModelBinder(typeof(TypeConverterModelBinder))] ContentPath path, int level, int depth, IDictionary<string, object> htmlAttributes, string viewNamePrefix)
+        public ActionResult Menu([ModelBinder(typeof(TypeConverterModelBinder))] ContentPath path, int level, int depth, IDictionary<string, object> htmlAttributes, string viewNamePrefix, Func<IContentInfo, bool> filter)
 		{
 			if (level < 1)
 			{
@@ -29,35 +29,44 @@ namespace Celes.Mvc4.Controllers
 				path = path.GetParent();
 			}
 
-			var currentLevelItems = _contentPathCache.GetChildEntriesOfPath(path)
+			var currentLevelItemsQuery = _contentPathCache.GetChildEntriesOfPath(path)
 				.Select(e => new MenuItemModel
 				{
 					ViewName = (viewNamePrefix ?? "") + e.ContentType.Name,
 					Content = GetContent(e),
-				})
-				.ToList();
+				});
+
+            var currentLevelItems = Filter(currentLevelItemsQuery, filter).ToList();
 
 			while (path.Count >= level)
 			{
 				var childPath = path;
 				path = path.GetParent();
 
-				currentLevelItems = _contentPathCache.GetChildEntriesOfPath(path)
+                currentLevelItemsQuery = _contentPathCache.GetChildEntriesOfPath(path)
 					.Select(e => new MenuItemModel
 					{
 						ViewName = (viewNamePrefix ?? "") + e.ContentType.Name,
 						Content = GetContent(e),
 						ChildMenuItems = e.Path.Equals(childPath) ? currentLevelItems : null,
-					})
-					.ToList();
+					});
+
+                currentLevelItems = Filter(currentLevelItemsQuery, filter).ToList();
 			}
 
 			return PartialView("Celes.Menu", new MenuModel
 			{
 				HtmlAttributes = htmlAttributes,
-				MenuItems = currentLevelItems //GetMenuItemForPath(path, viewNamePrefix, depth),
+				MenuItems = currentLevelItems,
 			});
 		}
+
+        private IEnumerable<MenuItemModel> Filter(IEnumerable<MenuItemModel> items, Func<IContentInfo, bool> filter)
+        {
+            return filter != null
+                ? items.Where(i => filter(i.Content))
+                : items;
+        }
 
 		private IList<MenuItemModel> GetMenuItemForPath(ContentPath path, string viewNamePrefix, int depth)
 		{
