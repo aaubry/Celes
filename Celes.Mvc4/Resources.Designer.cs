@@ -61,6 +61,15 @@ namespace Celes.Mvc4 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose a content.
+        /// </summary>
+        public static string ChooseAContent {
+            get {
+                return ResourceManager.GetString("ChooseAContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -205,6 +214,15 @@ namespace Celes.Mvc4 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -318,6 +336,15 @@ namespace Celes.Mvc4 {
         public static string TinyMCELanguage {
             get {
                 return ResourceManager.GetString("TinyMCELanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

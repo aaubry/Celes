@@ -13,8 +13,8 @@
             // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceCeles');
             ed.addCommand('mceCelesInsertLink', function () {
                 ed.windowManager.open({
-                    file: url + '/pick.html',
-                    width: 250,
+                    file: '/celes/Content/Pick',
+                    width: 252,
                     height: 500,
                     inline: 1
                 }, {

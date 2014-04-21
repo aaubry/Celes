@@ -12,6 +12,7 @@
     <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jquery/jquery-ui-1.8.23.custom.min.js" })"></script>
     <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/jstree/jquery.jstree.min.js" })"></script>
     <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/celes.js" })"></script>
+    <script type="text/javascript" src="@Url.Action("Get", "Asset", new { path = "Scripts/tiny_mce/tiny_mce_popup.js" })"></script>
 
     <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/smoothness/jquery-ui-1.8.23.custom.min.css" })" />
     <link rel="stylesheet" type="text/css" href="@Url.Action("Get", "Asset", new { path = "Styles/editor.css" })" />
@@ -23,13 +24,49 @@
     </style>
 }
 
-<div id="navigation" class="ui-widget-content ui-widget ui-corner-all">
-    <h2 class="ui-widget-header ui-helper-reset ui-corner-all">@Resources.Navigation</h2>
-    <div class="content"></div>
+<div class="content-picker">
+    <div id="navigation" class="ui-widget-content ui-widget">
+        <h2 class="ui-widget-header ui-helper-reset ui-corner-all">@Resources.ChooseAContent</h2>
+        <div class="content"></div>
+    </div>
+    <div class="fields">
+        <label for="title">@Resources.Title</label>:
+        <input type="text" id="title" name="title" />
+    </div>
+    <div class="toolbar ui-widget ui-corner-all">
+        <button name="close" value="close">@Resources.Close</button>
+        <button name="select" value="select">@Resources.Ok</button>
+    </div>
 </div>
 
 <script type="text/javascript">
+    
     $(function () {
+        var selectedPath = "";
+
+        $(".toolbar button[name=select]")
+            .button({ icons: { primary: "ui-icon-check" } })
+            .click(function() {
+
+                var text = $("#title").val();
+                if(text.length == 0) {
+                    text = $("#title").attr("placeholder");
+                }
+
+                var html = "<a href='/$0'>$1</a>"
+                    .replace("$0", selectedPath)
+                    .replace("$1", text);
+
+                tinyMCEPopup.editor.execCommand("mceInsertContent", false, html);
+                tinyMCEPopup.close();
+            });
+
+        $(".toolbar button[name=close]")
+            .button({ icons: { primary: "ui-icon-close" } })
+            .click(function() {
+                tinyMCEPopup.close();
+            });
+
         $("#navigation > .content")
             .jstree({
                 core: {
@@ -59,38 +96,17 @@
                 plugins: [ "themes", "json_data", "ui" ]
             })
             .bind("select_node.jstree", function (e, data) {
-                
-                var path = $(data.rslt.obj).attr("path");
-                $("#content")
-                    .disposeEditors()
-                    .loadUrl(@Html.JsString(Url.Action("Edit", "Content")) + "/" + path, function () {
-                        this.initializeEditors();
-                    });
+                selectedPath = $(data.rslt.obj).attr("path");
+
+                var text = $.jstree._reference("#navigation > .content")
+                    .get_text(data.args[0]);
+
+                $("#title").attr("placeholder", text);
             })
             .bind("loaded.jstree", function(e, data) {
                 $.jstree._reference("#navigation > .content")
                     .select_node($("#navigation li[path='']"));
             })
         ;
-
-        //$(document).on("click", "form button[type=submit]", function (evt) {
-        //    evt.preventDefault();
-
-        //    var button = $(evt.target).closest("button");
-        //    var form = button.closest("form");
-
-        //    form.find("textarea.mceEditor").each(function() {
-        //        tinyMCE.get(this.id).save();
-        //    });
-
-        //    var data = form.serialize() + "&" + button.attr("name") + "=1";
-        //    form.find("input").attr("disabled", "disabled");
-
-        //    form.closest(".form-container")
-        //        .disposeEditors()
-        //        .loadUrl(form.attr("action"), data, function () {
-        //            this.initializeEditors();
-        //        });
-        //});
     });
 </script>

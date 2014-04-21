@@ -124,3 +124,37 @@ input[type=text] {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
+
+.content-picker #navigation {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 76px;
+    margin: 0;
+    border: none;
+}
+
+.content-picker .fields {
+    position: absolute;
+    bottom: 41px;
+    left: 0;
+    right: 0;
+    height: 32px;
+    margin-bottom: 3px;
+}
+
+.content-picker .fields label {
+}
+
+.content-picker .fields input {
+    display: block;
+    margin: 0 3px;
+    width: 241px;
+}
+
+.content-picker .toolbar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 32px;
+}
