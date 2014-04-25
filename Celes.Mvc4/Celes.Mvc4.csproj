@@ -411,7 +411,7 @@
     <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\celes\editor_plugin.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\celes\img\link.gif" />
+    <EmbeddedResource Include="Assets\Scripts\tiny_mce\plugins\celes\img\link.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

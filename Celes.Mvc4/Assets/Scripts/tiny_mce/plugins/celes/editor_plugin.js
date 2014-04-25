@@ -27,7 +27,7 @@
             ed.addButton('celesInsertLink', {
                 title: 'Insérer un lien vers une autre page',
                 cmd: 'mceCelesInsertLink',
-                image: url + '/img/link.gif'
+                image: url + '/img/link.png'
             });
 
             //// Add a node change handler, selects the button in the UI when a image is selected
